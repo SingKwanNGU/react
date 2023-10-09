@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非受控组件</title>
+</head>
+<body>
+       <!--引入react核心库,全局多了一个对象 React-->
+       <script type="text/javascript" src="../js/react.development.js"></script>
+       <!--引入react-dom,用于支持react操作dom，全局多了一个对象 ReactDOM-->
+       <script type="text/javascript" src="../js/react-dom.development.js"></script>
+       <!--引入babel,用于将jsx转为js-->
+       <script type="text/javascript" src="../js/babel.min.js"></script>
+       <!--引入prop-types，用于对组件标签属性进行限制,全局多了一个对象 PropTypes-->
+       <script type="text/javascript" src="../js/prop-types.js"></script>
+   
+   
+       
+       <div id="test1"></div>
+  
+  
+       <script type="text/babel">
+           // 创建组件
+           class Login extends React.Component{
+
+            handleSubmit = () =>{
+                event.preventDefault() //阻止默认行为
+                const {username,password} = this
+                alert(`你输入的账号：${username.value},你输入的密码： ${password.value}`)
+            }
+            
+            render(){
+                return (
+                    <form action="https://www.atguigu.com" onSubmit={this.handleSubmit}>
+                       用户名： <input type="text"  ref={c => this.username= c} name="username" />&nbsp;
+                       密码： <input type="password" ref={c => this.password= c} name="password" />
+                        <button >登录</button>
+                    </form>
+                )
+            }
+           }
+
+           // 渲染组件
+           ReactDOM.render(<Login/>,document.getElementById('test1'));
+
+
+
+       </script>
+</body>
+</html>

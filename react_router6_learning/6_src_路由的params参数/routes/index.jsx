@@ -1,0 +1,28 @@
+import { Navigate } from "react-router-dom"
+import Home from '../pages/Home'
+import About from '../pages/About'
+import Message from "../pages/Message"
+import News from "../pages/News"
+import Detail from "../pages/Detail"
+
+
+const routes=[
+    {path:'/home',
+    element:<Home/>,
+    children:[
+      {path:'message',
+      element:<Message/>,
+      children:[
+        {path:'detail/:id/:title/:content',
+        element:<Detail/>}
+      ]},
+      {path:'news',
+      element:<News/>}
+    ]},
+    {path:'/about',
+    element:<About/>},
+    {path:'/' ,
+    element:<Navigate  to="/about" />}
+  ]
+
+export default routes

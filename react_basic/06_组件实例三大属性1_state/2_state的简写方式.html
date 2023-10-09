@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>state</title>
+</head>
+<body>
+    
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    
+    <div id="test"></div>
+
+
+    <script type="text/babel">
+      //创建组件
+      class Weather extends React.Component{
+       
+        //初始化状态
+        state={ isHot:false}
+        
+        render(){
+            const {isHot} =this.state
+          return <h1 onClick = {this.changeWeather}>今天天气很{isHot? '炎热' : '凉爽'}</h1>
+        }
+
+        //自定义方法——要用赋值语句的形式（给所有实例添加了changeWeather方法）+箭头函数（箭头函数本身没有this，会以环境中的this为指向）
+        changeWeather = ()=>{
+          const isHot = this.state.isHot
+          this.setState({isHot:!isHot})
+          console.log(this);
+        }
+      }
+
+      
+      ReactDOM.render(<Weather/>,document.getElementById('test'))
+     
+    </script>
+</body>
+</html>

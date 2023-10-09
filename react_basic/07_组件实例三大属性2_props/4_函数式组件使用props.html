@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>state</title>
+</head>
+<body>
+    <!--引入react核心库,全局多了一个对象 React-->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!--引入react-dom,用于支持react操作dom，全局多了一个对象 ReactDOM-->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!--引入babel,用于将jsx转为js-->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!--引入prop-types，用于对组件标签属性进行限制,全局多了一个对象 PropTypes-->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+
+    
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+
+    <script type="text/babel">
+      //创建组件
+      /*class Person extends React.Component{
+
+
+       
+
+        //对标签属性进行类型、必要性的限制
+        static propTypes={
+          name:PropTypes.string.isRequired,//限制name必传，且必须为字符串
+          sex:PropTypes.string, //限制sex为字符串
+          age:PropTypes.number, //限制age为数字
+        
+        }
+        //指定标签的默认属性值
+        static defaultProps={
+          sex:'男',//sex默认值为男
+          age:18 //age默认值为18
+        }
+        
+        render(){
+            //props是只读的
+            const {name,age,sex} =this.props
+            // this.props.name='jack'//此行代码会报错，因为props是只读的,不能给其下属性注定值。
+            return (
+                <ul>
+                    <li>姓名: {name}</li>
+                    <li>性别：{sex}</li>
+                    <li>年龄: {age+1}</li>
+                </ul>
+            )
+        }
+      }*/
+   
+     
+      function Person(props){
+        console.log(props);
+        const {name,age,sex} =props
+        return (
+                <ul>
+                    <li>姓名: {name}</li>
+                    <li>性别：{sex}</li>
+                    <li>年龄: {age}</li>
+                </ul>
+        ) 
+      }
+
+      //对标签属性进行类型、必要性的限制
+      Person.propTypes={
+          name:PropTypes.string.isRequired,//限制name必传，且必须为字符串
+          sex:PropTypes.string, //限制sex为字符串
+          age:PropTypes.number, //限制age为数字
+        
+      }
+      //指定标签的默认属性值
+      Person.defaultProps={
+          sex:'男',//sex默认值为男
+          age:18 //age默认值为18
+      }
+
+
+      ReactDOM.render(<Person name="TOM"   />,document.getElementById('test1'))
+    
+
+    </script>
+</body>
+</html>

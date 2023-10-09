@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 以下标签是拿来做移动端适配的 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsx语法规则</title>
+    <style>
+      .title{
+        background-color: orange;
+        width: 200px;
+      }
+    </style>
+</head>
+<body>
+    <!-- react 使用步骤  -->
+    <!--  1.引入react的js库 包含babel.min.js (使ES6转ES5和使Jsx转Js) 和 react.development.js 和 react-dom.development.js（使react可以操作dom）
+      注意：  必须先引入react.development.js核心库，再引入react-dom.development.js扩展库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <!-- 2. 准备好一个容器用于存放虚拟DOM   -->
+    <div id="test"></div>
+
+    <!-- 3. 创建虚拟DOM元素  4.并将虚拟DOM元素渲染的页面上  步骤3和步骤4结合在一块，放在script代码块中-->
+    <script type="text/babel">/* 此处一定要写babel,不写type默认是js */
+      
+      const myID='aTgUiGu'
+      const myData='HeLlo,ReaCt'
+      //1. 创建虚拟dom
+      const VDOM=(
+        <div>
+          <h2 className='title' id={myID.toLowerCase()}>
+              <span style={{color:'white',fontSize:'29px'}}>{myData.toLowerCase()}</span>
+          </h2>
+          <h2 className='title' id={myID.toUpperCase()}>
+              <span style={{color:'white',fontSize:'29px'}}>{myData.toLowerCase()}</span>
+          </h2>
+          <input type="text"></input>
+        </div>
+          
+      ) 
+
+      //2. 渲染虚拟dom到页面
+      ReactDOM.render(VDOM,document.getElementById('test'))
+
+      /*
+          jsx语法规则:
+              1.定义虚拟DOM时,不要写引号
+              2.标签中混入js表达式时要用{}
+              3.标签的类名指定不要用class,要用className
+              4.内联样式，要用style={{key:value}}的形式去写
+              5.只有一个根标签
+              6.标签必须闭合
+              7.标签首字母
+                  (1).若小写字母开头，则将该标签转为html中同名元素，若html中无该标签对应的同名元素，则报错
+                  (2).若大写字母开头，react就去渲染对应的组件，若组件没有定义，则报错。
+      */
+    </script>
+</body>
+</html>
